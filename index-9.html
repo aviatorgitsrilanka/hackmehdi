@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page d'atterrissage du Rocket</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, #060b1a, #000000);
+      color: white;
+      text-align: center;
+    }
+    .button {
+      background: linear-gradient(45deg, #d4145a, #fbb03b);
+      border: none;
+      border-radius: 20px;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 0, 100, 0.6);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .button-green {
+      background: linear-gradient(45deg, #0f0, #0c0);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      animation: pulse 1.5s infinite;
+      color: black;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #0f0; }
+      50% { box-shadow: 0 0 30px #0f0; }
+      100% { box-shadow: 0 0 10px #0f0; }
+    }
+    .section {
+      padding: 30px 20px;
+    }
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 80%;
+      margin-bottom: 40px;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #444;
+    }
+    .comment {
+      background: #111c2b;
+      margin: 10px auto;
+      padding: 15px;
+      border-radius: 15px;
+      max-width: 700px;
+      display: flex;
+      align-items: center;
+    }
+    .comment img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .comment-info span:first-child {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    #signal-display {
+      font-size: 1.5em;
+      color: #00ffcc;
+      margin-top: 20px;
+    }
+    #id-input-section {
+      display: none;
+      margin-top: 20px;
+    }
+    #id-input-section input {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      width: 200px;
+    }
+    #id-confirm-btn, #deposit-btn {
+      margin-top: 10px;
+      background-color: #00ff00;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #balance-warning {
+      margin-top: 15px;
+      font-size: 1.1em;
+      color: #ff5050;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="section">
+    <h1>Votre tour n'est pas encore terminé. Attendez quelques secondes de plus !</h1>
+    <a class="button" href="https://t.me/viratcash_bot" target="_blank">✉️ Écrire à Joseph Bouba</a>
+    <a class="button" href="https://casaff.top/L?tag=d_4259449m_79147c__[]general[]_d156288_l192586_other&site=4259449&ad=79147&r=registration" target="_blank">🎮 Jouer à Aviator</a>
+    <button id="signal-btn" class="button button-green" onclick="getSignal()">✅ Obtenez le signal</button>
+    <div id="signal-display"></div>
+  </div>
+
+  <div id="id-input-section" class="section">
+    <h2>Entrez votre numéro 1xBet</h2>
+    <input type="number" id="user-id" placeholder="Votre ID 1xBet">
+    <br>
+    <button id="id-confirm-btn" onclick="handleIdSubmit()">Ajouter l'ID</button>
+    <div id="balance-warning"></div>
+    <a id="deposit-btn" href="https://casaff.top/L?tag=d_4259449m_79147c__[]general[]_d156288_l192586_other&site=4259449&ad=79147&r=registration" target="_blank" style="display:none">🤑 Ajouter de l'argent à votre compte</a>
+  </div>
+
+  <div class="section">
+    <h2>Gagnants des derniers tours</h2>
+    <table>
+      <tr><th>Nom</th><th>Témoignage</th><th>Gain</th></tr>
+      <tr><td>Armand Ngu</td><td>Merci Joseph Bouba, j'ai remboursé mon prêt bancaire et maintenant je suis sur la bonne voie</td><td>912,350 XAF</td></tr>
+      <tr><td>Jean Fokam</td><td>Je n'y croyais pas au début, mais maintenant je joue tous les jours</td><td>2,145,700 XAF</td></tr>
+      <tr><td>Claudine Tchoupo</td><td>Merci Joseph Bouba, maintenant je vis une vie tranquille</td><td>1,005,600 XAF</td></tr>
+      <tr><td>Lucas Beya</td><td>Je n'ai plus besoin de travailler maintenant ! J'ai tout ce dont j'ai besoin dans la vie !</td><td>1,523,100 XAF</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="comment">
+      <img src="/mnt/data/A_landing_webpage_in_French_displays_bonuses_for_a.png" alt="avatar">
+      <div class="comment-info">
+        <span>Armand Ngu</span>
+        <span>Merci Joseph Bouba, maintenant je n'ai plus de soucis financiers</span>
+      </div>
+    </div>
+    <div class="comment">
+      <img src="/mnt/data/A_landing_webpage_in_French_displays_bonuses_for_a.png" alt="avatar">
+      <div class="comment-info">
+        <span>Jean Fokam</span>
+        <span>Au début, je ne croyais pas Joseph Bouba, maintenant je gagne des millions !</span>
+      </div>
+    </div>
+    <div class="comment">
+      <img src="/mnt/data/A_landing_webpage_in_French_displays_bonuses_for_a.png" alt="avatar">
+      <div class="comment-info">
+        <span>Claudine Tchoupo</span>
+        <span>Je vis maintenant librement, merci Joseph Bouba !</span>
+      </div>
+    </div>
+    <div class="comment">
+      <img src="/mnt/data/A_landing_webpage_in_French_displays_bonuses_for_a.png" alt="avatar">
+      <div class="comment-info">
+        <span>Lucas Beya</span>
+        <span>La vie que vous m'avez montrée n'est pas pour moi. Je vais changer !</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let signalActive = false;
+
+    function getSignal() {
+      const display = document.getElementById('signal-display');
+      const idSection = document.getElementById('id-input-section');
+      const signalBtn = document.getElementById('signal-btn');
+
+      if (signalActive) {
+        display.textContent = '🎯 Le jeu est en cours, veuillez patienter...';
+        return;
+      }
+
+      signalActive = true;
+      signalBtn.disabled = true; // Désactive le bouton de signal pendant l'attente de l'ID
+
+      // Générer le multiplicateur basé sur des probabilités
+      const rand = Math.random();
+      let multiplier;
+      if (rand < 0.6) {
+        multiplier = (Math.random() * (2.4 - 1) + 1).toFixed(2); // 60% [1–2.4]
+      } else if (rand < 0.8) {
+        multiplier = (Math.random() * (6 - 3) + 3).toFixed(2);   // 20% [3–6]
+      } else {
+        multiplier = (Math.random() * (98 - 10) + 10).toFixed(2); // 20% [10–98]
+      }
+
+      display.textContent = `🚀 Nouveau signal prêt: ×${multiplier}`;
+      idSection.style.display = 'block'; // Afficher le champ pour l'ID
+
+      // L'utilisateur ne peut plus recevoir de signaux tant que l'ID n'est pas saisi
+    }
+
+    function handleIdSubmit() {
+      const id = document.getElementById('user-id').value;
+      const warning = document.getElementById('balance-warning');
+      const depositBtn = document.getElementById('deposit-btn');
+
+      if (id.trim() !== '') {
+        warning.textContent = '📉 Votre solde 1XBET est inférieur à 1400 XAF. Veuillez ajouter des fonds à votre compte !';
+        depositBtn.style.display = 'inline-block';
+        document.getElementById('signal-btn').disabled = true; // Désactive définitivement le bouton de signal après que l'ID soit saisi
+      }
+    }
+  </script>
+</body>
+
+</html>
