@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة هبوط روكيت</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, #060b1a, #000000);
+      color: white;
+      text-align: center;
+    }
+    .button {
+      background: linear-gradient(45deg, #d4145a, #fbb03b);
+      border: none;
+      border-radius: 20px;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 0, 100, 0.6);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .button-green {
+      background: linear-gradient(45deg, #0f0, #0c0);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      animation: pulse 1.5s infinite;
+      color: black;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #0f0; }
+      50% { box-shadow: 0 0 30px #0f0; }
+      100% { box-shadow: 0 0 10px #0f0; }
+    }
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .heartbeat {
+      animation: heartbeat 1s infinite;
+      color: #00ffcc;
+      font-size: 2em;
+    }
+    .section {
+      padding: 30px 20px;
+    }
+    #signal-display {
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+    #id-input-section {
+      display: none;
+      margin-top: 20px;
+    }
+    #id-input-section input {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      width: 200px;
+    }
+    #id-confirm-btn, #deposit-btn {
+      margin-top: 10px;
+      background-color: #00ff00;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #balance-warning {
+      margin-top: 15px;
+      font-size: 1.1em;
+      color: #ff5050;
+    }
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 80%;
+      margin-bottom: 40px;
+      direction: rtl;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #444;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="section">
+    <h1>دورك لم ينته بعد. انتظر بضع ثوانٍ إضافية!</h1>
+    <a class="button" href="https://t.me/viratcash_bot" target="_blank">✉️ Message us</a>
+    <a class="button" href="https://affpa.top/L?tag=d_4206914m_62287c_&site=4206914&ad=62287&r=registration" target="_blank">🎮 Play Aviator</a>
+    <button id="signal-btn" class="button button-green" onclick="getSignal()">✅ Get Signal</button>
+    <div id="signal-display"></div>
+  </div>
+
+  <div id="id-input-section" class="section">
+    <h2>أدخل معرف 1xBet الخاص بك</h2>
+    <input type="number" id="user-id" placeholder="معرف 1xBet الخاص بك">
+    <br>
+    <button id="id-confirm-btn" onclick="handleIdSubmit()">تأكيد المعرف</button>
+    <div id="balance-warning"></div>
+    <a id="deposit-btn" href="https://affpa.top/L?tag=d_4206914m_62287c_&site=4206914&ad=62287&r=registration" target="_blank" style="display:none">🤑 أضف أموال</a>
+  </div>
+
+  <div class="section">
+    <h2>الفائزون الجدد</h2>
+    <table>
+      <tr><th>الاسم</th><th>الشهادة</th><th>الأرباح</th></tr>
+      <tr><td>محمد ولد أحمد</td><td>سددت ديوني والآن أعيش براحة</td><td>3600 MRU</td></tr>
+      <tr><td>سيدي ولد عبد الله</td><td>لم أصدق بالبداية، والآن أربح كل يوم</td><td>7100 MRU</td></tr>
+      <tr><td>مريم بنت محمد</td><td>حياتي أصبحت أسهل الآن</td><td>4100 MRU</td></tr>
+      <tr><td>أحمد ولد سيدي</td><td>الآن أعيش الحياة التي كنت أحلم بها</td><td>6300 MRU</td></tr>
+    </table>
+  </div>
+
+  <script>
+    let signalActive = false;
+
+    function getSignal() {
+      const display = document.getElementById('signal-display');
+      const idSection = document.getElementById('id-input-section');
+      const signalBtn = document.getElementById('signal-btn');
+
+      if (signalActive) {
+        display.textContent = '🎯 جاري انتظار إدخال المعرف...';
+        idSection.style.display = 'block';
+        return;
+      }
+
+      signalActive = true;
+      signalBtn.disabled = true;
+
+      const rand = Math.random();
+      let multiplier;
+      if (rand < 0.6) {
+        multiplier = (Math.random() * (2.4 - 1) + 1).toFixed(2);
+      } else if (rand < 0.8) {
+        multiplier = (Math.random() * (6 - 3) + 3).toFixed(2);
+      } else {
+        multiplier = (Math.random() * (98 - 10) + 10).toFixed(2);
+      }
+
+      display.innerHTML = `<span class='heartbeat'>🚀 ×${multiplier}</span>`;
+      idSection.style.display = 'block';
+    }
+
+    function handleIdSubmit() {
+      const id = document.getElementById('user-id').value;
+      const warning = document.getElementById('balance-warning');
+      const depositBtn = document.getElementById('deposit-btn');
+
+      if (id.trim() !== '') {
+        warning.textContent = '📉 رصيد حسابك أقل من 90 MRU. يرجى إضافة أموال!';
+        depositBtn.style.display = 'inline-block';
+        document.getElementById('signal-btn').disabled = true;
+      }
+    }
+  </script>
+</body>
+
+</html>
