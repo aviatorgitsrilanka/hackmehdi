@@ -4,52 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>برنامج إشارات Aviator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Подключаем современный арабский шрифт Tajawal -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg1:#060b1a; --bg2:#000; --txt:#fff; --acc1:#d4145a; --acc2:#fbb03b;
       --green:#00ff00; --green2:#00cc00; --warn:#ff5050; --highlight:#ffe066; --black:#000;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin:0; padding:0; }
     body {
-      margin:0; font-family:'Almarai',system-ui,-apple-system,Segoe UI,Arial; background:linear-gradient(to bottom,var(--bg1),var(--bg2));
-      color:var(--txt); text-align:center;
+      margin:0; font-family:'Tajawal', sans-serif; 
+      background:linear-gradient(to bottom,var(--bg1),var(--bg2));
+      color:var(--txt); text-align:center; line-height:1.7;
     }
-    .section { padding:24px 16px; }
+    h1, h2 { margin-bottom:18px; }
+    h1 { font-size:1.6em; font-weight:700; }
+    h2 { font-size:1.3em; font-weight:700; }
+
+    .section { padding:28px 16px; }
+
     .button {
       background:linear-gradient(45deg,var(--acc1),var(--acc2));
-      border:none; border-radius:18px; color:#fff; padding:14px 22px; margin:8px; font-size:1.05em;
-      cursor:pointer; box-shadow:0 0 16px rgba(255,0,100,.5); text-decoration:none; display:inline-block;
+      border:none; border-radius:22px; color:#fff; 
+      padding:16px 26px; margin:10px auto; font-size:1.1em;
+      cursor:pointer; box-shadow:0 0 16px rgba(255,0,100,.5); 
+      text-decoration:none; display:block; max-width:280px;
     }
     .button-green {
       background:linear-gradient(45deg,var(--green),var(--green2));
       box-shadow:0 0 18px rgba(0,255,0,.5); color:var(--black); font-weight:700;
     }
-    #signal-display { font-size:1.1em; margin-top:14px; min-height:1.2em; opacity:.9; }
-    #id-input-section { display:none; margin-top:16px; }
+
+    #signal-display { font-size:1.1em; margin-top:14px; opacity:.9; }
+
+    #id-input-section { display:none; margin-top:20px; }
+
     #id-input-section input {
-      padding:12px; font-size:1em; border-radius:10px; border:none; margin:8px 0; width:240px;
+      padding:12px; font-size:1em; border-radius:10px; border:none;
+      margin:10px auto; width:90%; max-width:320px; display:block;
+      text-align:center;
     }
+
     #id-confirm-btn, #deposit-btn {
-      margin-top:10px; background-color:var(--green); color:var(--black);
-      padding:10px 18px; border:none; border-radius:10px; font-weight:800; cursor:pointer; display:inline-block;
+      margin:12px auto; background-color:var(--green); color:var(--black);
+      padding:12px 22px; border:none; border-radius:14px; font-weight:800; 
+      cursor:pointer; display:block; max-width:260px;
     }
     #deposit-btn { display:none; text-decoration:none; }
+
     .sys-notice {
-      max-width:680px; margin:16px auto 0; text-align:start; background:#0b1226; border:1px solid #21304f;
-      border-radius:12px; padding:14px 16px; line-height:1.7;
+      max-width:700px; margin:18px auto 0; text-align:center;
+      background:#0b1226; border:1px solid #21304f;
+      border-radius:14px; padding:18px; line-height:1.8;
     }
-    .sys-title { font-weight:800; color:var(--warn); margin-bottom:8px; }
-    .sys-item { margin:6px 0; }
+    .sys-title { font-weight:800; color:var(--warn); margin-bottom:10px; }
+    .sys-item { margin:8px 0; }
     .sys-highlight {
-      background:var(--highlight); color:#212121; font-weight:900; padding:6px 10px; border-radius:8px; display:inline-block;
+      background:var(--highlight); color:#212121; font-weight:900; 
+      padding:8px 12px; border-radius:10px; display:inline-block;
     }
-    table { margin:0 auto 32px; border-collapse:collapse; width:88%; direction:rtl; }
-    th, td { padding:10px; border-bottom:1px solid #444; }
+
+    table { margin:20px auto; border-collapse:collapse; width:90%; }
+    th, td { padding:10px; border-bottom:1px solid #444; font-size:.95em; }
+
     @media (max-width:480px){
-      .button{ padding:12px 16px; font-size:1em; }
-      #id-input-section input{ width:100%; max-width:320px; }
-      .sys-notice{ margin:12px 12px 0; }
+      h1{ font-size:1.3em; }
+      h2{ font-size:1.1em; }
+      .button{ font-size:1em; padding:14px 18px; }
+      .sys-notice{ margin:14px 10px; font-size:.95em; }
     }
   </style>
 </head>
@@ -60,7 +82,7 @@
     <a class="button" href="https://t.me/MEHDI_cash_bot" target="_blank">تواصل معنا على تيليجرام</a>
     <a class="button" href="https://reffpa.com/L?tag=d_4553825m_62287c_&site=4553825&ad=62287&r=registration" target="_blank">دخول 1xBet</a>
 
-    <!-- الزر لم يعد يعطي أي "إشارة"؛ فقط يظهر إدخال الـID -->
+    <!-- زر يظهر فقط إدخال ID -->
     <button id="signal-btn" class="button button-green" onclick="openIdForm()">الحصول على الإشارة</button>
 
     <div id="signal-display"></div>
@@ -69,12 +91,11 @@
   <div id="id-input-section" class="section">
     <h2>أدخل رقم حسابك على 1xBet</h2>
     <input type="tel" id="user-id" placeholder="اكتب الـ ID ديال 1xBet" inputmode="numeric" />
-    <br />
     <button id="id-confirm-btn" onclick="handleIdSubmit()">تحقق من الـ ID</button>
 
     <!-- إشعار النظام يظهر بعد التحقق -->
     <div id="sys-block" class="sys-notice" style="display:none;">
-      <div class="sys-title">عطل أثناء الإضافة إلى نظام APK AVIATOR PROGRAMM</div>
+      <div class="sys-title">⚠️ عطل أثناء الإضافة إلى نظام APR PROGRAMM</div>
       <div class="sys-item">لم يتم العثور على رصيد في حساب 1xBet!</div>
       <div class="sys-item"><span class="sys-highlight">قم بالإيداع بقيمة 70–150 MAD للتفعيل</span></div>
     </div>
@@ -82,7 +103,7 @@
     <!-- زر الإيداع -->
     <a id="deposit-btn"
        href="https://reffpa.com/L?tag=d_4553825m_62287c_&site=4553825&ad=62287&r=registration"
-       target="_blank">إيداع الرصيد (1XBET)</a>
+       target="_blank">🤑 إيداع الرصيد (1xBet)</a>
   </div>
 
   <div class="section">
@@ -97,23 +118,20 @@
   </div>
 
   <script>
-    // لا توجد أي دوال لإظهار "إشارة" أو مولد أرقام—تمت الإزالة.
     function openIdForm() {
-      document.getElementById('signal-display').textContent = 'أدخل الـ ID للتحقق…';
+      document.getElementById('signal-display').textContent = '➡️ أدخل الـ ID للتحقق…';
       document.getElementById('id-input-section').style.display = 'block';
       document.getElementById('signal-btn').disabled = true;
     }
-
     function handleIdSubmit() {
       const id = (document.getElementById('user-id').value || '').trim();
       if (!id) {
         alert('من فضلك اكتب الـ ID ديال 1xBet');
         return;
       }
-      // إظهار إشعار النظام وزر الإيداع
       document.getElementById('sys-block').style.display = 'block';
-      document.getElementById('deposit-btn').style.display = 'inline-block';
-      document.getElementById('signal-display').textContent = 'تم حظر الوصول إلى الإشارات حتى يتم الإيداع.';
+      document.getElementById('deposit-btn').style.display = 'block';
+      document.getElementById('signal-display').textContent = '🚫 تم حظر الوصول إلى الإشارات حتى يتم الإيداع.';
     }
   </script>
 </body>
