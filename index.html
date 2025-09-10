@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>برنامج إشارات Aviator</title>
-  <!-- Подключаем современный арабский шрифт Tajawal -->
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -13,7 +12,7 @@
     }
     * { box-sizing: border-box; margin:0; padding:0; }
     body {
-      margin:0; font-family:'Tajawal', sans-serif; 
+      margin:0; font-family:'Tajawal', sans-serif;
       background:linear-gradient(to bottom,var(--bg1),var(--bg2));
       color:var(--txt); text-align:center; line-height:1.7;
     }
@@ -25,9 +24,9 @@
 
     .button {
       background:linear-gradient(45deg,var(--acc1),var(--acc2));
-      border:none; border-radius:22px; color:#fff; 
+      border:none; border-radius:22px; color:#fff;
       padding:16px 26px; margin:10px auto; font-size:1.1em;
-      cursor:pointer; box-shadow:0 0 16px rgba(255,0,100,.5); 
+      cursor:pointer; box-shadow:0 0 16px rgba(255,0,100,.5);
       text-decoration:none; display:block; max-width:280px;
     }
     .button-green {
@@ -47,7 +46,7 @@
 
     #id-confirm-btn, #deposit-btn {
       margin:12px auto; background-color:var(--green); color:var(--black);
-      padding:12px 22px; border:none; border-radius:14px; font-weight:800; 
+      padding:12px 22px; border:none; border-radius:14px; font-weight:800;
       cursor:pointer; display:block; max-width:260px;
     }
     #deposit-btn { display:none; text-decoration:none; }
@@ -60,7 +59,7 @@
     .sys-title { font-weight:800; color:var(--warn); margin-bottom:10px; }
     .sys-item { margin:8px 0; }
     .sys-highlight {
-      background:var(--highlight); color:#212121; font-weight:900; 
+      background:var(--highlight); color:#212121; font-weight:900;
       padding:8px 12px; border-radius:10px; display:inline-block;
     }
 
@@ -82,7 +81,6 @@
     <a class="button" href="https://t.me/MEHDI_cash_bot" target="_blank">تواصل معنا على تيليجرام</a>
     <a class="button" href="https://reffpa.com/L?tag=d_4553825m_62287c_&site=4553825&ad=62287&r=registration" target="_blank">دخول 1xBet</a>
 
-    <!-- زر يظهر فقط إدخال ID -->
     <button id="signal-btn" class="button button-green" onclick="openIdForm()">الحصول على الإشارة</button>
 
     <div id="signal-display"></div>
@@ -93,17 +91,23 @@
     <input type="tel" id="user-id" placeholder="اكتب الـ ID ديال 1xBet" inputmode="numeric" />
     <button id="id-confirm-btn" onclick="handleIdSubmit()">تحقق من الـ ID</button>
 
-    <!-- إشعار النظام يظهر بعد التحقق -->
     <div id="sys-block" class="sys-notice" style="display:none;">
       <div class="sys-title">⚠️ عطل أثناء الإضافة إلى نظام APR PROGRAMM</div>
       <div class="sys-item">لم يتم العثور على رصيد في حساب 1xBet!</div>
       <div class="sys-item"><span class="sys-highlight">قم بالإيداع بقيمة 70–150 MAD للتفعيل</span></div>
     </div>
 
-    <!-- زر الإيداع -->
     <a id="deposit-btn"
        href="https://reffpa.com/L?tag=d_4553825m_62287c_&site=4553825&ad=62287&r=registration"
        target="_blank">🤑 إيداع الرصيد (1xBet)</a>
+  </div>
+
+  <!-- ✅ Новый блок: قائمة اللاعبين الآن -->
+  <div class="section">
+    <h2>قائمة اللاعبين الآن</h2>
+    <div id="live-players" class="sys-notice" style="text-align:center; font-size:1.2em;">
+      جاري تحميل البيانات...
+    </div>
   </div>
 
   <div class="section">
@@ -123,6 +127,7 @@
       document.getElementById('id-input-section').style.display = 'block';
       document.getElementById('signal-btn').disabled = true;
     }
+
     function handleIdSubmit() {
       const id = (document.getElementById('user-id').value || '').trim();
       if (!id) {
@@ -133,6 +138,24 @@
       document.getElementById('deposit-btn').style.display = 'block';
       document.getElementById('signal-display').textContent = '🚫 تم حظر الوصول إلى الإشارات حتى يتم الإيداع.';
     }
+
+    // 🔥 قائمة اللاعبين الحية
+    const names = ["يوسف", "مريم", "سفيان", "سعاد", "حمزة", "فاطمة", "أمين", "نهى", "عبدالله", "ليلى"];
+    function getRandomWin() {
+      return Math.floor(Math.random() * (5000 - 1200 + 1)) + 1200;
+    }
+    function getRandomName() {
+      return names[Math.floor(Math.random() * names.length)];
+    }
+    function updateLivePlayers() {
+      const player = getRandomName();
+      const win = getRandomWin();
+      const emojis = ["💰","🚀","🎯","🎉","🤑","🔥"];
+      const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+      document.getElementById('live-players').textContent = `${player} ربح ${win} MAD ${emoji}`;
+    }
+    updateLivePlayers();
+    setInterval(updateLivePlayers, 2000);
   </script>
 </body>
 </html>
